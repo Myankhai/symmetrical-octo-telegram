@@ -1,0 +1,39 @@
+
+public class simpleHTTP {
+
+    public static void main(String[] args) throws IOException {
+         ServerSocket server = new ServerSocket(8080);
+        System.out.println("Listening for connection on port 8080. . .");
+        while (true) {
+           try  (Socket socket = server.accept()){
+               Date today = new Date();
+               String httpResponse = "HTTP/1.1 200 OK\r\n\r\n" + today;
+               socket.getOutputStream()
+                       .write(httpResponse.getBytes("UTF-8"));
+           }
+
+
+
+
+// final Socket client = server.accept();
+            // blocking method, blocks until a client connects to the server.
+
+
+
+
+/*
+
+Simple stuff for Java ServerSocket and Socket classes.
+ Compile the code then visit http://localhost:8080 to see your date and time 8)
+
+            1.Read HTTP request from client socket
+            2.Prepare an HTTP response
+            3.Send HTTP response to client
+            4.Close the socket
+
+These connections can only serve one client at a time but can be scaled
+using threading or Java NIO non blocking selectors & channels. 
+
+
+*/
+
